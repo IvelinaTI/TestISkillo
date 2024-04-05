@@ -1,32 +1,23 @@
 package IskilloTesting;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import object.Header;
 import object.HomePage;
 import object.LoginPage;
 import object.ProfilePage;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.concurrent.TimeUnit;
+public class EditProfileTest extends TestObject {
 
-public class TestProfilePage {
-    ChromeDriver webDriver;
+    @DataProvider(name="getUser")
+    public Object[][] getUsers(){
+        return new Object[][]{
+                {"tonchevaIvelina","toncheva123456"}
+        };
+        }
 
-
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethod() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-    }
-
-    @Test
-    public void testModifyProfilePage() {
+    @Test(dataProvider = "getUser")
+    public void editProfileTest(String username, String password) {
         HomePage homePage = new HomePage(webDriver);
         Header header = new Header(webDriver);
         LoginPage loginPage = new LoginPage(webDriver);
@@ -35,14 +26,17 @@ public class TestProfilePage {
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded());
         header.clickLogin();
-        loginPage.fillUserName("tonchevaIvelina");
-        loginPage.fillPassword("toncheva123456");
         Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
+
+        loginPage.fillUserName(username);
+        loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
         loginPage.clickSignIn();
+
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
+
         profilePage.clickModifyProfileButton();
         profilePage.justClick();
         profilePage.fillNewPassword("Ivka123456");
@@ -50,10 +44,5 @@ public class TestProfilePage {
         profilePage.fillPublicInfo("Testing");
         // profilePage.clickSave();
 
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        webDriver.close();
     }
 }

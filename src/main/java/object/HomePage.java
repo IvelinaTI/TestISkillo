@@ -1,17 +1,18 @@
 package object;
 
+import factory.FactoryHomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePage {
+public class HomePage extends FactoryHomePage {
     public static final String HOME_URL = "http://training.skillo-bg.com:4200/posts/all";
-    private final WebDriver webDriver;
+
 
     public HomePage(WebDriver driver) {
-        this.webDriver = driver;
+        super(driver);
     }
 
     public void navigateTo() {
