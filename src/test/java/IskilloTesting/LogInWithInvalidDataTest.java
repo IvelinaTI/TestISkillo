@@ -1,25 +1,27 @@
 package IskilloTesting;
 
-import object.*;
+import object.Header;
+import object.HomePage;
+import object.LoginPage;
+import object.ProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class DeletePostTest extends TestObject{
-    @DataProvider(name="getUser")
-    public Object[][] getUsers(){
+public class LogInWithInvalidDataTest extends TestObject {
+    @DataProvider(name = "getUser")
+    public Object[][] getUsers() {
         return new Object[][]{
-                {"tonchevaIvelina","toncheva123456"}
+                {"tonchevaIvelina", "toncheva"}
         };
     }
+
     @Test(dataProvider = "getUser")
-    public void deletePost (String username, String password) {
-        Header header = new Header(webDriver);
+    public void LogWithInvaliPassword(String username, String password) {
         HomePage homePage = new HomePage(webDriver);
+        Header header = new Header(webDriver);
         LoginPage loginPage = new LoginPage(webDriver);
         ProfilePage profilePage = new ProfilePage(webDriver);
-        PostPage postPage = new PostPage(webDriver);
-        profilePage.navigateTo();
 
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded());
@@ -32,12 +34,7 @@ public class DeletePostTest extends TestObject{
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
         loginPage.clickSignIn();
 
-        Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
         header.clickProfile();
-
-        postPage.clickPostedPicture();
-        postPage.clickDeletePost();
-        postPage.clickConfirmDelete();
-
+        Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
     }
 }

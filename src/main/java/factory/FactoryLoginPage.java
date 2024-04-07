@@ -21,6 +21,9 @@ public class FactoryLoginPage {
     public WebElement rememberMeCheckBox;
     @FindBy(id = "sign-in-button")
     public WebElement signInButton;
+    @FindBy(xpath = "//*/p//a[text()='Register']")
+    public WebElement register;
+
     public FactoryLoginPage(WebDriver driver){
         this.webDriver = driver;
         PageFactory.initElements(webDriver,this);

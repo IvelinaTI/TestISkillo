@@ -1,9 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Web test suit" verbose="1">
-    <test name="Login Test">
+    <test name="ISkillo">
         <classes>
-            <class name="myFirstTests.AutomationLoginTest"></class>
+            <class name="IskilloTesting.CommentPostTest"></class>
+            <class name="IskilloTesting.CreateAccountTest"></class>
+            <class name="IskilloTesting.DeletePostTest"></class>
+            <class name="IskilloTesting.EditProfileTest"></class>
+            <class name="IskilloTesting.LogInWithInvalidDataTest"></class>
+            <class name="IskilloTesting.PostTest"></class>
         </classes>
     </test>
 </suite>

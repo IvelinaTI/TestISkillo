@@ -1,0 +1,13 @@
+factory\FactoryRegisterPage.class
+factory\FactoryPostPage.class
+object\ProfilePage.class
+factory\FactoryHeader.class
+factory\FactoryHomePage.class
+object\RegisterPage.class
+object\LoginPage.class
+object\PostPage.class
+object\HomePage.class
+factory\FactoryProfilePage.class
+org\example\Main.class
+object\Header.class
+factory\FactoryLoginPage.class

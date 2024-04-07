@@ -1,0 +1,7 @@
+IskilloTesting\CreateAccountTest.class
+IskilloTesting\LogInWithInvalidDataTest.class
+IskilloTesting\DeletePostTest.class
+IskilloTesting\EditProfileTest.class
+IskilloTesting\TestObject.class
+IskilloTesting\PostTest.class
+IskilloTesting\CommentPostTest.class

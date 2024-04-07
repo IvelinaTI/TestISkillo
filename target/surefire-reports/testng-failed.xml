@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Web test suit]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="ISkillo(failed)" verbose="0">
+    <classes>
+      <class name="IskilloTesting.LogInWithInvalidDataTest">
+        <methods>
+          <include name="setupTestSuite"/>
+          <include name="LogWithInvaliPassword" invocation-numbers="0"/>
+          <include name="setUpTest"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- IskilloTesting.LogInWithInvalidDataTest -->
+      <class name="IskilloTesting.CreateAccountTest">
+        <methods>
+          <include name="createNewUser" invocation-numbers="0"/>
+          <include name="setupTestSuite"/>
+          <include name="setUpTest"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- IskilloTesting.CreateAccountTest -->
+    </classes>
+  </test> <!-- ISkillo(failed) -->
+</suite> <!-- Failed suite [Web test suit] -->

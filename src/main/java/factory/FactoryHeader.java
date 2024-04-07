@@ -20,6 +20,7 @@ public class FactoryHeader {
     public  WebElement newPostLink;
 
 
+
     public FactoryHeader(WebDriver driver){
         this.webDriver = driver;
         PageFactory.initElements(webDriver,this);
