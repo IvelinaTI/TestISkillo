@@ -12,7 +12,7 @@ public class EditProfileTest extends TestObject {
     @DataProvider(name="getUser")
     public Object[][] getUsers(){
         return new Object[][]{
-                {"tonchevaIvelina","toncheva123456"}
+                {"Ivelinat000","toncheva1234567"}
         };
         }
 
@@ -39,10 +39,18 @@ public class EditProfileTest extends TestObject {
 
         profilePage.clickModifyProfileButton();
         profilePage.justClick();
-        profilePage.fillNewPassword("Ivka123456");
-        profilePage.fillConfirmNewPassword("Ivka123456");
+        profilePage.fillNewPassword("toncheva123456");
+        profilePage.fillConfirmNewPassword("toncheva123456");
         profilePage.fillPublicInfo("Testing");
-        // profilePage.clickSave();
+        profilePage.clickSave();
 
+        header.clickLogOut();
+        Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
+        header.clickLogin();
+        loginPage.fillUserName(username);
+        loginPage.fillPassword("toncheva123456");
+        loginPage.clickSignIn();
+        Assert.assertTrue(profilePage.isProfilePageLoaded1());
     }
 }
+//Принципно на този тест сайта има грешка,защото веднъж смениш ли паролата нито със старата нито с новата можеш да се логнеш отново.

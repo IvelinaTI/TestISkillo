@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FactoryRegisterPage {
-    public static final String REGISTER_PAGE = "http://training.skillo-bg.com:4200/users/register";
+//    public static final String REGISTER_PAGE = "http://training.skillo-bg.com:4200/users/register";
     public final WebDriver webDriver;
     public FactoryRegisterPage(WebDriver driver) {
         this.webDriver = driver;

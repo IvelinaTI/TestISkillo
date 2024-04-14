@@ -1,7 +1,9 @@
 package IskilloTesting;
 
 import object.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -39,6 +41,8 @@ public class CommentPostTest extends TestObject{
         postPage.clickPostedPicture();
         postPage.fillCommentPost("Writing the comment test.");
         postPage.fillCommentPost(String.valueOf(Keys.RETURN));
+        Assert.assertTrue(postPage.isCommentPostExist(),"The post not exist.");
+        }
 
     }
-}
+

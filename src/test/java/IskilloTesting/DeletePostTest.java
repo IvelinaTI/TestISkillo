@@ -40,4 +40,7 @@ public class DeletePostTest extends TestObject{
         postPage.clickConfirmDelete();
 
     }
-}
+       // Assert.assertEquals(postPage.isDeletedPost(), "The actual text is not matching the expected text");
+
+    }
+

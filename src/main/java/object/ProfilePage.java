@@ -55,4 +55,5 @@ public class ProfilePage extends FactoryProfilePage {
     public void navigateTo() {
         this.webDriver.get(PROFILE_PAGE);
     }
+
 }
