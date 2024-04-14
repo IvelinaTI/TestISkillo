@@ -4,6 +4,7 @@ import factory.FactoryPostPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -53,10 +54,12 @@ public class PostPage extends FactoryPostPage {
         WebElement isCommentPost = webDriver.findElement(By.xpath("//div[text()='Writing the comment test.']"));
         return isCommentPost.isDisplayed();
     }
-    public boolean isUrlPostPageLoaded(){
+
+    public boolean isUrlPostPageLoaded() {
         WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(15));
         return wait.until(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4200/posts/create"));
     }
+
     public boolean isElementVisible() {
         try {
             WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(20));
@@ -81,6 +84,7 @@ public class PostPage extends FactoryPostPage {
             return 0;
         }
     }
+
     public int countVisibleElements2() {
         try {
             List<WebElement> elements = this.webDriver.findElements(By.xpath("//div[@class= 'gallery-item-info']"));
@@ -95,7 +99,8 @@ public class PostPage extends FactoryPostPage {
             return 0;
         }
     }
-    public boolean countVisibleElements(){
+
+    public boolean countVisibleElements() {
         return countVisibleElements1() == countVisibleElements2();
     }
 
@@ -142,7 +147,6 @@ public class PostPage extends FactoryPostPage {
 //    }
 
 
-
     //Нераборещи неща от интернет
 //    public boolean isPictureDeleted(){
 //        Dimension numberOfPostedPicture = webDriver.findElement(By.xpath("//div[@class= 'gallery-item-info']")).getSize();
@@ -155,9 +159,9 @@ public class PostPage extends FactoryPostPage {
 // Тук се опитах да направя проверка броят на снимките да бъде -1
 //   public Object isPictureDeleted() {
 //        WebElement numberOfPostedPicture = webDriver.findElement(By.xpath("//div[@class= 'gallery-item-info']/count(*)"));
-        //By getChanges = By.xpath("//div[@class= 'gallery-item-info']");
-
-
+//        By getChanges = By.xpath("//div[@class= 'gallery-item-info']");
+//
+//
 //        List<WebElement> listChanges = webDriver.findElements(By.xpath(""));
 //        WebElement finalNumber = webDriver.findElement(By.xpath(""));
 //        if (numberOfPostedPicture == numberOfPostedPicture -1) {
@@ -177,8 +181,22 @@ public class PostPage extends FactoryPostPage {
 //        String actualText = deleteMessageBox.getText();
 //        return actualText.equals(expectedText);
 //    }
+
+    public int getAllPosts() {
+        List<WebElement> allPosts = webDriver.findElements(By.cssSelector("app-post .gallery-item"));
+        return allPosts.size();
     }
 
+    public boolean isAlertByTitleVisible(String title) {
+        try {
+            WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(10));
+            WebElement alertByTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'toast-message') and text()='" + title + "']")));
+            return alertByTitle.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
 
 
 

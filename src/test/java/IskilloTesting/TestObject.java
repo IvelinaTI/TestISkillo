@@ -16,9 +16,9 @@ import java.time.Duration;
 import static org.apache.commons.io.FileUtils.cleanDirectory;
 
 public class TestObject {
-    public static final String TEST_RESOURCES_DIR = "src\\test\\resources\\";
-    public static final String SCREENSHOTS_DIR = TEST_RESOURCES_DIR.concat("screenshots\\");
-    public static final String UPLOAD_DIR = TEST_RESOURCES_DIR.concat("upload\\");
+    public static final String TEST_RESOURCES_DIR = "src" + File.separator + "test" + File.separator + "resources" + File.separator;
+    public static final String SCREENSHOTS_DIR = TEST_RESOURCES_DIR + "screenshots" + File.separator;
+    public static final String UPLOAD_DIR = TEST_RESOURCES_DIR + "upload" + File.separator;
     ChromeDriver webDriver;
 
     @BeforeSuite
@@ -40,7 +40,7 @@ public class TestObject {
     @AfterMethod
     public void afterMethod(ITestResult testResult) {
         takeScreenshot(testResult);
-        //webDriver.close();
+        webDriver.close();
     }
 
     private void takeScreenshot(ITestResult testResult) {
