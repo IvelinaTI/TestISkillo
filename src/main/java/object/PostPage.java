@@ -2,9 +2,9 @@ package object;
 
 import factory.FactoryPostPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -57,8 +57,93 @@ public class PostPage extends FactoryPostPage {
         WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(15));
         return wait.until(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4200/posts/create"));
     }
+    public boolean isElementVisible() {
+        try {
+            WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(20));
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='post-img']/img[@src='https://i.imgur.com/3Qg8Bys.jpeg']")));
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public int countVisibleElements1() {
+        try {
+            List<WebElement> elements = this.webDriver.findElements(By.xpath("//div[@class= 'gallery-item-info']"));
+            int count = 0;
+            for (WebElement element : elements) {
+                if (element.isDisplayed()) {
+                    count++;
+                }
+            }
+            return count;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    public int countVisibleElements2() {
+        try {
+            List<WebElement> elements = this.webDriver.findElements(By.xpath("//div[@class= 'gallery-item-info']"));
+            int count = 0;
+            for (WebElement element : elements) {
+                if (element.isDisplayed()) {
+                    count++;
+                }
+            }
+            return count;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    public boolean countVisibleElements(){
+        return countVisibleElements1() == countVisibleElements2();
+    }
 
 
+    //Нераборещ вариант 4
+//        public boolean isPostVisible() {
+//            try {
+//                WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
+//                WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='post-img']/img[@src='https://i.imgur.com/3Qg8Bys.jpeg")));
+//                return element.isDisplayed();
+//            } catch (Exception e) {
+//                return false;
+//            }
+//        }
+
+    //Нераборещ вариант 3
+//    public boolean isPostExist(){
+//        WebDriverWait wait = new WebDriverWait(webDriver,Duration.ofSeconds(20));
+//        WebElement existPost = webDriver.findElement(By.xpath("//div[@class='post-img']/img[@src='https://i.imgur.com/3Qg8Bys.jpeg"));
+//        wait.until(ExpectedConditions.visibilityOf(existPost));
+//        return existPost.isDisplayed();
+//    }
+
+    //Неработещ вариант 2
+//    public boolean isPostExist(){
+//        WebElement postExist = webDriver.findElement(By.xpath("//div[@class='post-img']/img[@src='https://i.imgur.com/3Qg8Bys.jpeg']"));
+//        return ExpectedConditions.numberOfElementsToBe(By.xpath("//div[@class= 'gallery-item-info']"),6);
+//    }
+
+    //Неработещ вариант 1
+//    public int countBeforeNewPost(){
+//        WebElement countPost = (WebElement) webDriver.findElements(By.xpath("//div[@class= 'gallery-item-info']"));
+//        return countPost.getSize();
+//    }
+//    public Dimension countAfterNewPost(){
+//        WebElement countPost = (WebElement) webDriver.findElements(By.xpath("//div[@class= 'gallery-item-info']"));
+//        return countPost.getSize();
+//    }
+//    public boolean isPostExist(){
+//        if (countAfterNewPost() == countBeforeNewPost()){
+//            return false;
+//        }
+//        return false;
+//    }
+
+
+
+    //Нераборещи неща от интернет
 //    public boolean isPictureDeleted(){
 //        Dimension numberOfPostedPicture = webDriver.findElement(By.xpath("//div[@class= 'gallery-item-info']")).getSize();
 //        if(numberOfPostedPicture == (numberOfPostedPicture-1){

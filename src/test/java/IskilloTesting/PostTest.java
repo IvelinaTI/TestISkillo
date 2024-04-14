@@ -64,11 +64,16 @@ public class PostTest extends TestObject {
 
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
+        //postPage.countBeforeNewPost();
+        postPage.countVisibleElements1();
         header.clickNewPost();
 
         Assert.assertTrue(postPage.isNewPostLoaded(), "The form is not loaded!");
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
+        //Assert.assertFalse(postPage.isElementVisible());
+        postPage.countVisibleElements2();
+        Assert.assertFalse(postPage.countVisibleElements());
     }
 }

@@ -38,10 +38,10 @@ public class TestObject {
     }
 
     @AfterMethod
-//    public void afterMethod(ITestResult testResult) {
-//        takeScreenshot(testResult);
-//        webDriver.close();
-//    }
+    public void afterMethod(ITestResult testResult) {
+        takeScreenshot(testResult);
+        //webDriver.close();
+    }
 
     private void takeScreenshot(ITestResult testResult) {
         if (ITestResult.FAILURE == testResult.getStatus()) {
