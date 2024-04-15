@@ -41,12 +41,17 @@ public class PostTest extends TestObject {
 
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
+        int postsBefore = postPage.getAllPosts();
+        System.out.println(postsBefore);
         header.clickNewPost();
 
         Assert.assertTrue(postPage.isNewPostLoaded(), "The form is not loaded!");
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
+        int postsAfter = postPage.getAllPosts();
+        System.out.println(postsAfter);
+        Assert.assertEquals(postsBefore, (postsAfter - 1));
     }
     @Test(dataProvider = "createSecondPost")
     public void createSecondPostTest(String username, String password,File postPicture, String caption) {
@@ -60,20 +65,21 @@ public class PostTest extends TestObject {
         loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
 
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
-        //postPage.countBeforeNewPost();
-        postPage.countVisibleElements1();
+        int postsBefore = postPage.getAllPosts();
+        System.out.println(postsBefore);
         header.clickNewPost();
-
         Assert.assertTrue(postPage.isNewPostLoaded(), "The form is not loaded!");
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
-        //Assert.assertFalse(postPage.isElementVisible());
-        postPage.countVisibleElements2();
-        Assert.assertFalse(postPage.countVisibleElements());
+        int postsAfter = postPage.getAllPosts();
+        System.out.println(postsAfter);
+        Assert.assertEquals(postsBefore, (postsAfter - 1));
+
     }
 }

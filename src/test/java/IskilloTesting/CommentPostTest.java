@@ -26,6 +26,7 @@ public class CommentPostTest extends TestObject{
 
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded());
+        Assert.assertTrue(header.isLogInButtonExist());
         header.clickLogin();
         Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
 
@@ -33,11 +34,12 @@ public class CommentPostTest extends TestObject{
         loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
 
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
         header.clickProfile();
-
+        Assert.assertTrue(postPage.isPostedPictureExist());
         postPage.clickPostedPicture();
         postPage.fillCommentPost("Writing the comment test.");
         postPage.fillCommentPost(String.valueOf(Keys.RETURN));

@@ -1,9 +1,6 @@
 package IskilloTesting;
 
-import object.Header;
-import object.HomePage;
-import object.LoginPage;
-import object.ProfilePage;
+import object.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -12,7 +9,7 @@ public class EditProfileTest extends TestObject {
     @DataProvider(name="getUser")
     public Object[][] getUsers(){
         return new Object[][]{
-                {"Ivelinat000","toncheva1234567"}
+                {"Ivelinat05","toncheva1234567"}
         };
         }
 
@@ -22,18 +19,19 @@ public class EditProfileTest extends TestObject {
         Header header = new Header(webDriver);
         LoginPage loginPage = new LoginPage(webDriver);
         ProfilePage profilePage = new ProfilePage(webDriver);
+        PostPage postPage = new PostPage(webDriver);
 
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded());
+        Assert.assertTrue(header.isLogInButtonExist());
         header.clickLogin();
         Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
-
         loginPage.fillUserName(username);
         loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
-
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
 
@@ -43,14 +41,17 @@ public class EditProfileTest extends TestObject {
         profilePage.fillConfirmNewPassword("toncheva123456");
         profilePage.fillPublicInfo("Testing");
         profilePage.clickSave();
-
+        Assert.assertTrue(header.isLogOutButtonExist());
         header.clickLogOut();
         Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
+        Assert.assertTrue(header.isLogInButtonExist());
         header.clickLogin();
         loginPage.fillUserName(username);
         loginPage.fillPassword("toncheva123456");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
-        Assert.assertTrue(profilePage.isProfilePageLoaded1());
+        Assert.assertTrue(postPage.isInvalidPasswordBoxExist());
+
     }
 }
 //Принципно на този тест сайта има грешка,защото веднъж смениш ли паролата нито със старата нито с новата можеш да се логнеш отново.

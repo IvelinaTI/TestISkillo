@@ -33,5 +33,20 @@ public class Header extends FactoryHeader {
     public void clickNewPost() {
         newPostLink.click();
     }
+    public boolean isProfileExist(){
+        WebDriverWait wait = new WebDriverWait(webDriver,Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(profileLink));
+        return profileLink.isDisplayed();
+    }
+    public boolean isLogOutButtonExist(){
+        WebDriverWait wait = new WebDriverWait(webDriver,Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(logOutButton));
+        return logOutButton.isDisplayed();
+    }
+    public boolean isLogInButtonExist(){
+        WebDriverWait wait = new WebDriverWait(webDriver,Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(loginLink));
+        return loginLink.isEnabled();
+    }
 
 }

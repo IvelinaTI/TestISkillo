@@ -10,7 +10,7 @@ public class CreateAccountTest extends TestObject {
     @DataProvider(name="createUser")
     public Object[][] createUser(){
         return new Object[][]{
-                {"Ivelinat0000","ive3344@gmail.com","toncheva1234567"}
+                {"Ivelinat05","ive3945@gmail.com","toncheva1234567"}
         };
     }
     @Test(dataProvider = "createUser")
@@ -19,6 +19,8 @@ public class CreateAccountTest extends TestObject {
         RegisterPage registerPage = new RegisterPage(webDriver);
         ProfilePage profilePage = new ProfilePage(webDriver);
         PostPage postPage = new PostPage(webDriver);
+        HomePage homePage = new HomePage(webDriver);
+        LoginPage loginPage = new LoginPage(webDriver);
 
         registerPage.navigateTo();
         Assert.assertTrue(registerPage.isUrlRegisterPageLoaded());
@@ -33,8 +35,14 @@ public class CreateAccountTest extends TestObject {
         Assert.assertTrue(registerPage.signInButton.isEnabled());
         registerPage.clickSignInButton();
         Assert.assertTrue(profilePage.isProfilePageLoaded1());
-        header.clickNewPost();
-        Assert.assertTrue(postPage.isUrlPostPageLoaded());
-
+        header.clickLogOut();
+        Assert.assertTrue(loginPage.isUrlLoginPageLoaded());
+        loginPage.fillUserName(username);
+        loginPage.fillPassword(password);
+        loginPage.checkRememberMe();
+        Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        loginPage.clickSignIn();
+        header.clickProfile();
+        Assert.assertTrue(profilePage.isProfilePageLoaded1());
     }
 }

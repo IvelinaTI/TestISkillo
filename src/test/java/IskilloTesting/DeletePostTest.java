@@ -1,5 +1,6 @@
 package IskilloTesting;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import object.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -30,17 +31,25 @@ public class DeletePostTest extends TestObject{
         loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
-
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
+
         header.clickProfile();
+        Assert.assertTrue(postPage.isPostedPictureExist(),"There is no posted picture!");
+        int postsBefore = postPage.getAllPosts();
+        System.out.println(postsBefore);
 
         postPage.clickPostedPicture();
         postPage.clickDeletePost();
         postPage.clickConfirmDelete();
-
+        Assert.assertTrue(postPage.isAlertByTitleVisible(" Post Deleted! "));
+        int postsAfter = postPage.getAllPosts();
+        System.out.println(postsAfter);
+        Assert.assertEquals(postsBefore, (postsAfter + 1));
     }
-       // Assert.assertEquals(postPage.isDeletedPost(), "The actual text is not matching the expected text");
-
     }
+
+
+
 

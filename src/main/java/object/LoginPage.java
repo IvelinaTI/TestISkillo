@@ -44,6 +44,9 @@ public class LoginPage extends FactoryLoginPage {
         wait.until(ExpectedConditions.visibilityOf(signInButton));
         signInButton.click();
     }
+    public boolean isSignInButtonIsClickable(){
+        return signInButton.isEnabled();
+    }
     public void clickRegister(){
         WebDriverWait wait = new WebDriverWait(webDriver,Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(register));

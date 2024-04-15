@@ -32,11 +32,12 @@ public class LogOutTest extends TestObject{
         loginPage.fillPassword(password);
         loginPage.checkRememberMe();
         Assert.assertTrue(loginPage.isCheckedRememberMe(), "Remember me is not checked!");
+        Assert.assertTrue(loginPage.isSignInButtonIsClickable());
         loginPage.clickSignIn();
-
+        Assert.assertTrue(header.isProfileExist());
         header.clickProfile();
         Assert.assertTrue(profilePage.isProfilePageLoaded1(), "Profile page is not loaded!");
-
+        Assert.assertTrue(header.isLogOutButtonExist());
         header.clickLogOut();
         Assert.assertTrue(loginPage.isUrlLoginPageLoaded(),"Account is not logout!");
         header.clickHome();
