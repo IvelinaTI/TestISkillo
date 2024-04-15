@@ -40,7 +40,7 @@ public class TestObject {
     @AfterMethod
     public void afterMethod(ITestResult testResult) {
         takeScreenshot(testResult);
-        //webDriver.close();
+        webDriver.close();
     }
 
     private void takeScreenshot(ITestResult testResult) {
