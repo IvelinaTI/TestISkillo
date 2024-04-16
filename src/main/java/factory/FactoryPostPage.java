@@ -5,8 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class FactoryPostPage {
     public final WebDriver webDriver;
+    public static final String POST_URL = "http://training.skillo-bg.com:4200/posts/create";
+
 
     public FactoryPostPage(WebDriver driver) {
         this.webDriver = driver;
@@ -28,4 +32,12 @@ public class FactoryPostPage {
     public  WebElement deletePost;
     @FindBy(xpath = "//div[@class='delete-confirm']/button[text()='Yes']")
     public WebElement confirmDelete;
+    @FindBy(xpath = "//div[text()='Writing the comment test.']")
+    public WebElement isPostExist;
+    @FindBy(xpath = "//div[@class= 'gallery-item-info']")
+    public List<WebElement> elements;
+    @FindBy(xpath = "//*[@id='toast-container']//*[@class='toast-message ng-star-inserted']")
+    public WebElement invalidPasswordBox;
+    @FindBy(css = "app-post .gallery-item")
+    public List<WebElement> allPosts;
 }

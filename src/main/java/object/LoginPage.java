@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPage extends FactoryLoginPage {
-    //public static final String LOGIN_URL = "http://training.skillo-bg.com:4200/users/login";
 
     public LoginPage(WebDriver driver){
         super(driver);

@@ -9,7 +9,7 @@ public class EditProfileTest extends TestObject {
     @DataProvider(name="getUser")
     public Object[][] getUsers(){
         return new Object[][]{
-                {"Ivelinat05","toncheva1234567"}
+                {"Ivelinat06","toncheva1234567"}
         };
         }
 

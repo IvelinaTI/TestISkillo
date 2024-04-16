@@ -46,15 +46,16 @@ public class PostTest extends TestObject {
         header.clickNewPost();
 
         Assert.assertTrue(postPage.isNewPostLoaded(), "The form is not loaded!");
+        Assert.assertTrue(postPage.isUrlPostPageLoaded());
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
         int postsAfter = postPage.getAllPosts();
         System.out.println(postsAfter);
-        Assert.assertEquals(postsBefore, (postsAfter - 1));
+        Assert.assertEquals(postsBefore, (postsAfter));
     }
     @Test(dataProvider = "createSecondPost")
-    public void createSecondPostTest(String username, String password,File postPicture, String caption) {
+    public void createSecondPostTest(String username, String password,File postPicture, String caption) throws InterruptedException {
         Header header = new Header(webDriver);
         LoginPage loginPage = new LoginPage(webDriver);
         ProfilePage profilePage = new ProfilePage(webDriver);
@@ -79,7 +80,7 @@ public class PostTest extends TestObject {
         postPage.clickSubmitButton();
         int postsAfter = postPage.getAllPosts();
         System.out.println(postsAfter);
-        Assert.assertEquals(postsBefore, (postsAfter - 1));
+        Assert.assertEquals(postsBefore,(postsAfter));
 
     }
 }

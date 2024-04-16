@@ -10,7 +10,7 @@ public class CreateAccountTest extends TestObject {
     @DataProvider(name="createUser")
     public Object[][] createUser(){
         return new Object[][]{
-                {"Ivelinat05","ive3945@gmail.com","toncheva1234567"}
+                {"Ivelinat06","ive3946@gmail.com","toncheva1234567"}
         };
     }
     @Test(dataProvider = "createUser")
