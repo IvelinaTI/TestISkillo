@@ -50,9 +50,10 @@ public class PostTest extends TestObject {
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
+        Assert.assertTrue(postPage.isAlertByTitleVisible(" Post created! "));
         int postsAfter = postPage.getAllPosts();
         System.out.println(postsAfter);
-        Assert.assertEquals(postsBefore, (postsAfter));
+        Assert.assertEquals(postsBefore, (postsAfter - 1));
     }
     @Test(dataProvider = "createSecondPost")
     public void createSecondPostTest(String username, String password,File postPicture, String caption) throws InterruptedException {
@@ -78,9 +79,9 @@ public class PostTest extends TestObject {
         postPage.uploadPicture(postPicture);
         postPage.typePostCaption(caption);
         postPage.clickSubmitButton();
+        Assert.assertTrue(postPage.isAlertByTitleVisible(" Post created! "));
         int postsAfter = postPage.getAllPosts();
         System.out.println(postsAfter);
-        Assert.assertEquals(postsBefore,(postsAfter));
-
+        Assert.assertEquals(postsBefore,(postsAfter - 1));
     }
 }

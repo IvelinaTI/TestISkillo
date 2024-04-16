@@ -70,7 +70,7 @@ public class PostPage extends FactoryPostPage {
 
     public boolean isAlertByTitleVisible(String title) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(20));
             WebElement alertByTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'toast-message') and text()='" + title + "']")));
             return alertByTitle.isDisplayed();
         } catch (Exception e) {
